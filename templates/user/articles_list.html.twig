@@ -15,7 +15,7 @@
                     demande une wildcard 'id', donc je l'a renseigne avec l id de l'article bouclé#}
 
 
-                    <a href="{{ path('user_article_show',{'id':article.id}) }}"><img src="{{ asset('uploads/' ~ article.image) }}" class="resp" /></a>
+                    <a href="{{ path('user_article_show',{'id':article.id}) }}"><img src="{{ asset('uploads/' ~ article.image) }}" /></a>
                     <h1>{{article.title}}</h1>
                     <h2>{{article.content}}</h2>
                     <p><a href={{ path ('user_article_update',{'id' : article.id}) }} >modifier</a></p>

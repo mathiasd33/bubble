@@ -33,11 +33,7 @@ a{
 
 .flex{
     display: flex;
-
-}
-
-.card{
-    width:20%;
+    align-items: center;
 }
 
 .logo{
@@ -110,10 +106,6 @@ form{
     background-color: #FFEA01;
 }
 
-.imgArticle{
-    width: 200px;
-}
-
-.w30{
-    width: 30%;
+.imageArticle{
+    width: 20%;
 }

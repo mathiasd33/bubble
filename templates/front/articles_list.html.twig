@@ -6,23 +6,22 @@
 
 {% block main %}
 
-    <div class="flex">
+    <div class="categories">
         {% for article in articles %}
             {% if article.published %}
-
-                <div class="card">
+                <div class="categorie">
                     {# je génère un lien vers la route articleshow cette route
                     demande une wildcard 'id', donc je l'a renseigne avec l id de l'article bouclé#}
-                    <div class="imgArticle">
-                      <a href="{{ path('front_article_show',{'id':article.id}) }}"><img src="{{ asset('uploads/' ~ article.image) }}" class="resp" /></a>
+                    <div>
+                    <a href="{{ path('front_article_show',{'id':article.id}) }}"><img src="{{ asset('uploads/' ~ article.image) }}" /></a>
                     </div>
-                      <h1>{{article.title}}</h1>
-                      <h2>{{article.content}}</h2>
+                    <h1>{{article.title}}</h1>
+                    <h2>{{article.content}}</h2>
                     <p><strong>Fait part: </strong><a href= "{{ path('front_user_show',{'id':article.user.id}) }}"> {{ article.user.email }}</a></p>
                 </div>
-
             {% endif %}
         {% endfor %}
+
     </div>
 
 {% endblock main %}
