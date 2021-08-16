@@ -1,0 +1,27 @@
+{% extends 'admin/base.html.twig' %}
+
+   {% block metaTitle %}
+       Liste des articles
+   {% endblock metaTitle %}
+
+{% block main %}
+
+    <h1 class="titreCategories" >Vous avez {{ articles | length }} articles dans la base de données</h1>
+    <div class="categories">
+        {% for article in articles %}
+            {% if article.published %}
+                <div class="categorie">
+                    {# je génère un lien vers la route articleshow cette route
+                    demande une wildcard 'id', donc je l'a renseigne avec l id de l'article bouclé#}
+
+                    <img src="{{ asset('uploads/' ~ article.image) }}" />
+                    <h1>{{article.title}}</h1>
+                    <h2>{{article.content}}</h2>
+                    <p><a href={{ path ('admin_article_delete',{'id' : article.id}) }} >supprimer</a></p>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+
+{% endblock main %}

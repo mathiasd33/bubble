@@ -1,0 +1,22 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block metaTitle %}{{ categorie.title }}{% endblock metaTitle %}
+{% block main %}
+    <body>
+    <div class="show">
+        <h1>{{ categorie.title }}</h1>
+        <p><a href="{{ path ('admin_categorie_insert') }}">Ajouter une catégorie</a></p>
+        <p><a href={{ path ('admin_categorie_update',{'id' : categorie.id}) }} >Modifier la categorie</a></p>
+        <p><a href={{ path ('admin_categorie_delete',{'id' : categorie.id}) }} >Supprimer la categorie</a></p>
+
+{% for article in categorie.articles %}
+         <div class="imageArticle">
+            <img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.title }}" class="resp"/>
+         </div>
+            <p>{{ article.title }}</p>
+            <p>{{ article.content }}</p>
+        {% endfor %}
+    </div>
+
+    </body>
+{% endblock main %}

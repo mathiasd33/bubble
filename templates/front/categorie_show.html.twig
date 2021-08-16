@@ -1,0 +1,18 @@
+{% extends 'front/base.html.twig' %}
+
+{% block metaTitle %}{{ categorie.title }}{% endblock metaTitle %}
+{% block main %}
+    <div class="show">
+        <h1>{{ categorie.title }}</h1>
+
+{% for article in categorie.articles %}
+         <div class="imageArticle">
+            <a href="{{ path('front_article_show',{'id':article.id}) }}"><img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.title }}" class="resp"/></a>
+         </div>
+            <p>{{ article.title }}</p>
+            <p>{{ article.content }}</p>
+      <p><strong>Fait part: </strong><a href= "{{ path('front_user_show',{'id':article.user.id}) }}"> {{ article.user.email }}</a></p>
+
+{% endfor %}
+     </div>
+{% endblock main %}

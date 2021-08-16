@@ -1,0 +1,12 @@
+{% extends 'front/base.html.twig' %}
+
+{% block metaTitle %}{{ article.title }}{% endblock metaTitle %}
+
+{% block main %}
+    <img src="{{ asset('uploads/' ~ article.image) }}" />
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.content }}</p>
+        <p>{{ article.date | date ('y-m-d') }}</p>
+    <p><strong>Fait part: </strong><a href= "{{ path('front_user_show',{'id':article.user.id}) }}"> {{ article.user.email }}</a></p>
+
+{% endblock main %}

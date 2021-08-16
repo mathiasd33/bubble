@@ -1,0 +1,23 @@
+{% extends 'user/base.html.twig' %}
+
+{% block metaTitle %}{{ categorie.title }}{% endblock metaTitle %}
+{% block main %}
+    <body>
+    <div class="show">
+        <h1>{{ categorie.title }}</h1>
+
+{% for article in categorie.articles %}
+    {% if article.user == app.user %}
+    <div class="imageArticle">
+        <img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.title }}" class="resp"/>
+    </div>
+    <p>{{ article.title }}</p>
+    <p>{{ article.content }}</p>
+    {% endif %}
+{% endfor %}
+
+
+    </div>
+
+    </body>
+{% endblock main %}

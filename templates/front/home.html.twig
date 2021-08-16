@@ -1,0 +1,10 @@
+{% extends ('front/base.html.twig') %}
+
+{% block metaTitle %}
+    Accueil
+{% endblock metaTitle %}
+
+
+{% block main %}
+    <a href={{ path('front_articles_list') }}><li> Tous les articles</li></a>
+{% endblock main %}

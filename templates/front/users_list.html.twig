@@ -1,0 +1,10 @@
+{% extends 'front/base.html.twig' %}
+
+{% block metaTitle %}
+Liste des profils{% endblock metaTitle %}
+
+{% block main %}
+    {% for user in users %}
+      <p>{{ user.email }}</p>
+    {% endfor %}
+{% endblock main %}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block metaTitle %}{% endblock metaTitle %}</title>
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<header>
+    <div class="first-head">
+        <div class="logo">
+            <a href={{ path ('home') }}><img src="{{ asset ('medias/logo.png') }}"  class="resp"></a>
+        </div>
+        <div>
+            {% if app.user %}
+                <div class="mb-3">
+                    <p><strong>Bienvenue: </strong> {{ app.user.username }}</p>
+                    <p><a href="{{ path('app_logout') }}">Se déconnecter</a></p>
+                    <p><a href="{{ path('home') }}">Acceuil du site</a></p>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+    <nav id="nav-head">
+        <ul class="flex">
+            <a href={{ path('user_articles_list') }}><li> Tous mes articles</li></a>
+
+            {% for categorie in categories.getAll() %}
+                <a href="{{ path('user_categorie_show', {'id': categorie.id}) }}"><li>{{ categorie.title }}</li></a>
+            {% endfor %}
+        </ul>
+
+    </nav>
+</header>
+
+<main>
+    {% block main %}{% endblock main %}
+</main>
+
+<footer>
+
+</footer>
+
+
+</html>

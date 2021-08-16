@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block metaTitle %}{% endblock metaTitle %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="DUBOURG Mathias" />
+    <meta name="description" content="Création" />
+    <meta
+            name="keywords"
+            content="bijoux,bois,textile,broderie,album,photo,métal,perle,tissus,jouet
+    fantaisie,bougie,peinture"
+    />
+    <link rel="stylesheet" href="{{ asset('style.css') }}" />
+
+</head>
+
+<body>
+   <header>
+       <div class="first-head">
+           <div class="logo">
+               <a href={{ path ('home') }}><img src={{ asset ('medias/logo.png') }}  class="resp"  alt="logo"></a>
+           </div>
+
+           <form id="search" class="flex">
+               <label for="search"></label>
+               <input type="search" name="search" id="search" placeholder="EX: Profil, Deco, Chaise..." >
+               <button type="submit">Recherche</button>
+           </form>
+           <div>
+               {% if app.user %}
+                   <div class="mb-3">
+                       <p><strong>Bienvenue: </strong> {{ app.user.username }}</p>
+                       {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                           <p><a href="{{ path('admin_home') }}">Mon espace</a> </p>
+                           {% else %}
+                           <p><a href="{{ path('user_home') }}">Mon espace</a> </p>
+                        {% endif %}
+
+                       <p><a href="{{ path('app_logout') }}">Se déconnecter</a></p>
+                   </div>
+               {% endif %}
+           </div>
+
+           {% if app.user is null %}
+           <div class="connection flex ">
+                   <p><a href="{{ path ('app_login') }}"> Se connecter</a></p>
+                   <p><a href="{{ path('front_insert_user') }}">Creer un compte</a></p>
+           </div>
+           {% endif  %}
+       </div>
+
+       <nav id="nav-head">
+           <ul class="flex">
+               <a href={{ path('home') }}><li> Acceuil</li></a>
+
+               {% for categorie in categories.getAll() %}
+               <a href="{{ path('categorie_show', {'id': categorie.id}) }}"><li>{{ categorie.title }}</li></a>
+               {% endfor %}
+
+           </ul>
+
+       </nav>
+   </header>
+
+   <main>
+       {% block main %}{% endblock main %}
+   </main>
+
+   <footer>
+
+   </footer>
+
+</body>
+</html>

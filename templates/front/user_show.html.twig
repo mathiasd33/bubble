@@ -1,0 +1,22 @@
+{% extends 'front/base.html.twig' %}
+
+{% block metaTitle %}profil de {{ user.email }}
+{% endblock metaTitle %}
+
+{% block main %}
+        <div>
+           <img src="{{ asset('uploads/' ~ user.image) }}" />
+        </div>
+        <p>{{ user.name }}</p>
+        <p>{{ user.firstname }}</p>
+        <p>{{ user.email }}</p>
+        <p>{{ user.city }}</p>
+        <p>{{ user.bio }}</p>
+        {% for article in user.articles|slice(1,6) %}
+        <div>
+           <a href="{{ path('front_article_show',{'id':article.id}) }}"><img src="{{ asset('uploads/' ~ article.image) }}" /></a>
+        </div>
+        {% endfor %}
+
+        <a href="{{ path('articles_user',{'id' : user.id} ) }}">Voir plus</a>
+{% endblock main %}

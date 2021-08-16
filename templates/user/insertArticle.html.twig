@@ -1,0 +1,60 @@
+{% extends 'user/base.html.twig' %}
+
+{% block main %}
+
+    {{ form_start(articleForm) }}
+    <section class="border border-grey w-50 mt-5 p-3 m-auto mb-5 bg bg-dark text-light rounded">
+
+        <h1 class="text-center">Ajouter un article</h1>
+
+        <div class="m-4 ">
+            {{ form_errors(articleForm.title) }}
+            {#permet de rendre le label du champs title #}
+            {{ form_label(articleForm.title , 'TITRE',{'label_attr': {'class': 'form-label'}}) }}
+            {#permet de rendre l'input du champs title #}
+            {{ form_widget(articleForm.title , {'attr': {'class': 'form-control', 'placeholder': 'remplissez le titre...'}}) }}
+        </div>
+
+
+        <div class="m-4">
+            {{ form_errors(articleForm.content) }}
+            {{ form_label(articleForm.content, 'CONTENU',{'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(articleForm.content, {'attr': {'class': 'form-control', 'placeholder': 'remplissez le contenu...'}}) }}
+        </div>
+
+        <div class="m-4">
+            {{ form_errors(articleForm.date) }}
+            {{ form_label(articleForm.date) }}
+            {{ form_widget(articleForm.date) }}
+
+        </div>
+
+         <div class="m-4">
+            {{ form_errors(articleForm.categorie) }}
+            {{ form_label(articleForm.categorie, 'Catégories',{'label_attr': {'class':'form-label' }}) }}
+            {{ form_widget(articleForm.categorie) }}
+        </div>
+
+        <div class="m-4">
+            {{ form_errors(articleForm.published) }}
+            {{ form_label(articleForm.published) }}
+            {{ form_widget(articleForm.published) }}
+        </div>
+
+        <div class="m-4">
+            {{ form_errors(articleForm.image) }}
+            {{ form_label(articleForm.image) }}
+            {{ form_widget(articleForm.image) }}
+        </div>
+
+
+
+        <div class="d-flex justify-content-center">
+            {{ form_widget(articleForm.submit , {'attr': {'class': 'btn btn-primary w-25 '}}) }}
+        </div>
+
+
+        {# équivalent de la balise de fermeture du form #}
+        {{ form_end(articleForm) }}
+    </section>
+{% endblock main %}
