@@ -18,6 +18,7 @@
                 <div class="mb-3">
                     <p><strong>Bienvenue: </strong> {{ app.user.username }}</p>
                     <p><a href="{{ path('app_logout') }}">Se déconnecter</a></p>
+                    <p><a href="{{ path('front_update_user', {'id' : app.user.id()}) }}">Modifier mon profil</a></p>
                     <p><a href="{{ path('home') }}">Acceuil du site</a></p>
                 </div>
             {% endif %}

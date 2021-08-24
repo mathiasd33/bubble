@@ -8,6 +8,8 @@
 
     <h1 class="titreCategories" >Vous avez {{ articles | length }} articles dans votre espace</h1>
     <div class="categories">
+
+        <h2 class="insert"><a href={{ path('user_article_insert') }}>Ajouter un article</a></h2>
         {% for article in articles %}
             {% if article.published %}
                 <div class="categorie">
@@ -26,5 +28,5 @@
 
     </div>
 
-    <h2 class="insert"><a href={{ path('user_article_insert') }}>Ajouter un article</a></h2>
+
 {% endblock main %}

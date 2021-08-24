@@ -5,8 +5,10 @@
 }
 
 .resp{
-    width: 100%;
-    height: auto;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+
 }
 
 .first-head{
@@ -38,27 +40,33 @@ a{
 
 .logo{
     width: 150px;
-    margin: 30px;
-    margin-top: 35px;
+    margin: 35px 30px 30px;
 }
 
-form{
+.formR{
     width: 55%;
     margin: 30px auto;
 
 }
 
-#search input{
+#recherche input{
     border: none;
-    margin-left: 2%;
+    margin-left: 5%;
+    width: 85%;
+
 }
 
-#search{
+#recherche input:focus{
+    outline: none;
+}
+
+#recherche{
     border: 1px solid silver;
     border-radius: 40px 40px;
+
 }
 
-#search button{
+#recherche button{
     border-radius: 0 40px 40px 0;
     border: none;
     background: #FFEA01;
@@ -69,13 +77,14 @@ form{
     cursor: pointer;
 }
 
-.connection :first-child{
+.conect{
     margin-right: 10px;
     padding: 5px;
     font-weight: bold;
+
 }
 
-.connection :last-child{
+.creat{
 
     padding: 5px;
     font-weight: bold;
@@ -84,13 +93,18 @@ form{
 
 .connection{
     margin-right: 15px;
+    display: flex;
+    align-items: center;
 
+}
+
+#side-bar{
+    display: none;
 }
 
 #nav-head ul{
 
     justify-content: space-between ;
-
 
 }
 
@@ -102,10 +116,231 @@ form{
     padding: 15px 0;
 }
 
+#nav-head a{
+    padding:15px 50px;
+}
+
 #nav-head li:hover{
     background-color: #FFEA01;
 }
 
 .imageArticle{
-    width: 20%;
+    width: 60%;
+    height: 100%;
+    margin: auto;
+
+
+}
+
+.carou{
+    width: 35%;
+    margin: 1% auto;
+}
+
+.carouBg{
+    background-color: rgba(105, 105, 105, 0.1);
+    height: 77vh;
+    padding: 1% 0;
+}
+
+.carouresp{
+    width: auto;
+    height: 69vh;
+}
+
+.nopad{
+    padding-left: 0 !important;
+}
+
+.margp{
+    width: 90%;
+    margin: auto 5%;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.articleShow{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.articleCard{
+    margin-top: 20px ;
+    border: 1px solid silver;
+    width: 23%;
+    height: 250px;
+    padding-bottom: 75px;
+
+}
+
+.articleCard h2 {
+    text-align: center;
+}
+
+.articleCard p{
+    margin-left: 80px;
+    width: 70%;
+}
+
+.login{
+    padding: 6% 0;
+}
+
+footer{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+
+@media  screen and (max-width: 1200px){
+
+
+    .logo{
+        width: 100px;
+        margin-top: 5px;
+    }
+
+    .formR{
+        width: 40%;
+        margin-top: 30px ;
+        margin-left: 1px;
+    }
+
+    #recherche input{
+        border: none;
+        margin-left: 5%;
+        width: 85%;
+
+    }
+
+    #recherche input:focus{
+        outline: none;
+    }
+
+    #recherche{
+        border: 1px solid silver;
+        border-radius: 40px 40px;
+
+    }
+
+    #recherche button{
+        border-radius: 0 40px 40px 0;
+        border: none;
+        background: #FFEA01;
+        width: 80px;
+        color:white;
+        margin-left: auto;
+        padding: 2px;
+        cursor: pointer;
+    }
+
+
+    .connection{
+        flex-direction: column;
+        width: 90px;
+        margin-right: 2px;
+    }
+
+.connection p{
+    font-size: 10px;
+    margin: 0;
+
+}
+
+#nav-head{
+    display: none;
+}
+
+    #side-bar {
+        position: absolute;
+        display: block;
+        width: 60%;
+        height: 100%;
+        top: 30px;
+        left: -300px;
+        transition: 0.5s ease-out;
+        z-index: 4;
+        background: yellow;
+    }
+    .toggle-btn {
+        border: 2px silver solid;
+        border-radius: 5px;
+        position: absolute;
+        top: 20px;
+        left: 320px;
+        cursor: pointer;
+        height: 38px;
+        width: 45px;
+    }
+    .toggle-btn span {
+        width: 35px;
+        height: 5px;
+        border-radius: 5px;
+        display: block;
+        margin: 4px auto auto;
+        transition: 0.3s ease;
+        background: silver;
+    }
+    #side-bar li {
+        width: 100%;
+        color: #292929;
+        list-style: none;
+        font-size: 2.5rem;
+        cursor: pointer;
+        padding-left: 5px;
+    }
+
+    li:hover {
+        background: #292929;
+        color: #fcfcfb;
+    }
+
+    #side-bar.active {
+        left: 0;
+    }
+    #side-bar.active span {
+        position: absolute;
+    }
+    #side-bar.active span:nth-child(1) {
+        transform: rotate(45deg);
+        top: 0;
+    }
+    #side-bar.active span:nth-child(2) {
+        opacity: 0;
+    }
+    #side-bar.active span:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+    #side-bar.active ~ .content {
+        opacity: 0.3;
+    }
+
+    .carou{
+        display: none;
+    }
+
+    .respB{
+        width: 50%;
+        margin-top: 10%;
+        margin-left: 40%;
+    }
+
+
+    .respD{
+        width: 50%;
+        margin-bottom: 10%;
+        margin-left: 40%;
+    }
+
+    .carouBg{
+        flex-direction: column;
+    }
+
+    .articleShow{
+
+    }
+
 }

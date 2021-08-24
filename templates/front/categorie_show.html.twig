@@ -2,17 +2,18 @@
 
 {% block metaTitle %}{{ categorie.title }}{% endblock metaTitle %}
 {% block main %}
-    <div class="show">
-        <h1>{{ categorie.title }}</h1>
 
-{% for article in categorie.articles %}
-         <div class="imageArticle">
-            <a href="{{ path('front_article_show',{'id':article.id}) }}"><img src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.title }}" class="resp"/></a>
-         </div>
-            <p>{{ article.title }}</p>
-            <p>{{ article.content }}</p>
-      <p><strong>Fait part: </strong><a href= "{{ path('front_user_show',{'id':article.user.id}) }}"> {{ article.user.email }}</a></p>
+    <h1>{{ categorie.title }}</h1>
+      <div class="articleShow">
+          {% for article in categorie.articles %}
+            <div class="articleCard">
+                  <h2>{{ article.title }}</h2>
+                  <div class="imageArticle">
+                      <a href="{{ path('front_article_show',{'id':article.id}) }}"><img class="resp" src="{{ asset('uploads/' ~ article.image) }}" alt="{{ article.title }}"/></a>
+                  </div>
+                  <p><strong>Fait part: </strong><a href= "{{ path('front_user_show',{'id':article.user.id}) }}"> {{ article.user.firstname }}</a></p>
+            </div>
+          {% endfor %}
+      </div>
 
-{% endfor %}
-     </div>
 {% endblock main %}

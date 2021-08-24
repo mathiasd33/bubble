@@ -88,6 +88,59 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            return $this->redirectToRoute('home');
+
+        }
+
+        return $this->render('front/insertUser.html.twig',[
+            'userForm' => $userForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route ("/front/update/user/{id}", name="front_update_user")
+     */
+    public function updatetUser($id,Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher, SluggerInterface $slugger){
+
+        $user = $userRepository->find($id);
+
+        $userForm = $this->createForm(UserType::class, $user);
+
+        $userForm->handleRequest($request);
+
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $imageFile = $userForm->get('image')->getData();
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '_' . uniqid() . '.' . $imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter('upload_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $exception) {
+                    // ... handle exception if something happens during file uploads
+                }
+
+                $user->setImage($newFilename);
+            }
+        }
+
+        if ($userForm->isSubmitted() && $userForm->isValid()){
+            $user->setRoles(["ROLE_USER"]);
+
+            $plainPassword = $userForm->get('password')->getData();
+            $hashedPassword = $userPasswordHasher->hashPassword($user,$plainPassword);
+            $user->setPassword($hashedPassword);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
+
         }
 
         return $this->render('front/insertUser.html.twig',[
